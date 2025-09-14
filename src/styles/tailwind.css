@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Core Colors */
+    --color-background: #FAFAFA; /* warm off-white */
+    --color-foreground: #1E293B; /* deep charcoal */
+    --color-border: #E2E8F0; /* light gray */
+    --color-input: #FFFFFF; /* pure white */
+    --color-ring: #2563EB; /* trust blue */
+    
+    /* Card Colors */
+    --color-card: #FFFFFF; /* pure white */
+    --color-card-foreground: #1E293B; /* deep charcoal */
+    --color-popover: #FFFFFF; /* pure white */
+    --color-popover-foreground: #1E293B; /* deep charcoal */
+    
+    /* Muted Colors */
+    --color-muted: #F8FAFC; /* very light gray */
+    --color-muted-foreground: #64748B; /* medium gray */
+    
+    /* Primary Colors */
+    --color-primary: #2563EB; /* trust blue */
+    --color-primary-foreground: #FFFFFF; /* white */
+    
+    /* Secondary Colors */
+    --color-secondary: #64748B; /* professional slate gray */
+    --color-secondary-foreground: #FFFFFF; /* white */
+    
+    /* Accent Colors */
+    --color-accent: #0EA5E9; /* lighter blue */
+    --color-accent-foreground: #FFFFFF; /* white */
+    
+    /* State Colors */
+    --color-success: #059669; /* confident green */
+    --color-success-foreground: #FFFFFF; /* white */
+    
+    --color-warning: #D97706; /* amber orange */
+    --color-warning-foreground: #FFFFFF; /* white */
+    
+    --color-error: #DC2626; /* clear red */
+    --color-error-foreground: #FFFFFF; /* white */
+    
+    --color-destructive: #DC2626; /* clear red */
+    --color-destructive-foreground: #FFFFFF; /* white */
+    
+    /* Additional Semantic Colors */
+    --color-surface: #FFFFFF; /* pure white */
+    --color-text-primary: #1E293B; /* deep charcoal */
+    --color-text-secondary: #64748B; /* medium gray */
+    
+    /* Border Variations */
+    --color-border-strong: #CBD5E1; /* stronger gray */
+    
+    /* Animation Variables */
+    --animation-duration-fast: 150ms;
+    --animation-duration-normal: 200ms;
+    --animation-duration-slow: 300ms;
+    --animation-spring: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    
+    /* Shadow Variables */
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06);
+    --shadow-lg: 0 4px 12px rgba(0,0,0,0.1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-medium text-text-primary;
+  }
+  
+  p {
+    @apply text-text-primary;
+  }
+  
+  small, .text-small {
+    @apply text-text-secondary;
+  }
+}
+
+@layer components {
+  .tech-card {
+    @apply bg-card text-card-foreground rounded-lg border border-border shadow-sm;
+    transition: all var(--animation-duration-normal) ease-out;
+  }
+  
+  .tech-card:hover {
+    @apply shadow-md;
+    transform: translateY(-1px);
+  }
+  
+  .rating-star {
+    transition: all var(--animation-duration-fast) ease-out;
+  }
+  
+  .rating-star:hover {
+    transform: scale(1.1);
+  }
+  
+  .price-indicator {
+    transition: all 250ms var(--animation-spring);
+  }
+  
+  .comparison-panel {
+    backdrop-filter: blur(4px);
+  }
+  
+  .skeleton-shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: shimmer 1.5s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+  
+  .sticky-nav  {
+    @apply sticky top-0 z-50 backdrop-blur;
+    transition: all var(--animation-duration-slow) ease-out;
+  }
+  
+  .filter-panel {
+    @apply bg-surface border-r border-border;
+  }
+  
+  .tooltip {
+    @apply bg-popover text-popover-foreground px-3 py-2 rounded-md text-sm shadow-lg;
+    animation: tooltip-in var(--animation-duration-normal) ease-out;
+  }
+  
+  @keyframes tooltip-in {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .font-data {
+    font-family: 'JetBrains Mono', monospace;
+  }
+  
+  .transition-spring {
+    transition-timing-function: var(--animation-spring);
+  }
+  
+  .shadow-custom-sm {
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .shadow-custom-md {
+    box-shadow: var(--shadow-md);
+  }
+  
+  .shadow-custom-lg {
+    box-shadow: var(--shadow-lg);
+  }
+}
